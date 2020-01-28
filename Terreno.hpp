@@ -9,7 +9,7 @@ private:
 public:
     Terreno();
     double getArea();
-    void setArea();
+    void setArea(double area);
 };
 
 #endif
