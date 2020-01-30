@@ -10,6 +10,7 @@ public:
     Terreno();
     double getArea();
     void setArea(double area);
+    void caracteristicas();
 };
 
 #endif

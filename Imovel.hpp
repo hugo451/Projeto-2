@@ -32,6 +32,7 @@ public:
     void setDescricao(string descricao);
     void setAnuncio(string anuncio);
     void setEndereco(Endereco endereco);
+    virtual void caracteristicas();
 };
 
 #endif

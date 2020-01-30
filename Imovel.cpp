@@ -52,3 +52,7 @@ void Imovel::setEndereco(Endereco endereco)
 {
     this->endereco = endereco;
 }
+void Imovel::caracteristicas()
+{
+    
+}

@@ -36,3 +36,18 @@ void Casa::setareaConstruida(double areaConstruida)
 {
     this->areaConstruida = areaConstruida;
 }
+void Casa::caracteristicas()
+{
+    cout << "Valor(R$): " << valor << endl;
+    cout << "Descrição: " << descricao << endl;
+    cout << "Anúncio: " << anuncio << endl;
+    cout << "Logradouro: " << endereco.getLogradouro() << endl;
+    cout << "Numero: " << endereco.getNumero() << endl;
+    cout << "Bairro: " << endereco.getBairro() << endl;
+    cout << "Cidade: " << endereco.getCidade() << endl;
+    cout << "CEP: " << endereco.getCep() << endl;
+    cout << "Número de quartos: " << numQuartos << endl;
+    cout << "Número de pavimentos: " << numPavimentos << endl;
+    cout << "Área do terreno:" << areaTerreno << endl;
+    cout << "Área construida: " << areaConstruida << endl;
+}

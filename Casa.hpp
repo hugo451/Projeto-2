@@ -23,6 +23,7 @@ public:
     void setnumQuartos(int numQuartos);
     void setareaTerreno(double areaTerreno);
     void setareaConstruida(double areaConstruida);
+    void caracteristicas();
 };
 
 #endif

@@ -24,6 +24,7 @@ public:
     void setvalorCondomino(double valorCondomino);
     void setvagasGaragem(int vagasGaragem);
     void setarea(double area);
+    void caracteristicas();
 
 };
 

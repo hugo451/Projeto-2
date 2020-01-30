@@ -44,3 +44,19 @@ void Apartamento::setarea(double area)
 {
     this->area = area;
 }
+void Apartamento::caracteristicas()
+{
+    cout << "Valor(R$): " << valor << endl;
+    cout << "Descrição: " << descricao << endl;
+    cout << "Anúncio: " << anuncio << endl;
+    cout << "Logradouro: " << endereco.getLogradouro() << endl;
+    cout << "Numero: " << endereco.getNumero() << endl;
+    cout << "Bairro: " << endereco.getBairro() << endl;
+    cout << "Cidade: " << endereco.getCidade() << endl;
+    cout << "CEP: " << endereco.getCep() << endl;
+    cout << "Posição: " << posicao << endl;
+    cout << "Número de quartos: " << numQuartos << endl;
+    cout << "Vagas de garagem: " << vagasGaragem << endl;
+    cout << "Valor do condomínio: " << valorCondomino << endl;
+    cout << "Area do imóvel: " << area << endl;
+}
