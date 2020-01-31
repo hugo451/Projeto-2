@@ -2,7 +2,7 @@
 
 Casa::Casa()
 {
-    this->tipoImovel = 2;
+    this->setTipoImovel(2);
 }
 int Casa::getnumPavimentos()
 {

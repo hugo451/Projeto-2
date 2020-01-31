@@ -2,7 +2,7 @@
 
 Apartamento::Apartamento()
 {
-    this->tipoImovel = 1;
+    this->setTipoImovel(1);
 }
 string Apartamento::getposicao()
 {

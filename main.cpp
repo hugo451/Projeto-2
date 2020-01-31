@@ -118,7 +118,7 @@ void pressione()
 
 int main();
 
-void consultar_imovel(vector<Imovel> imoveis, int indice)
+void consultar_imovel(vector<Imovel*> imoveis, int indice)
 {
     int tipo;
     int opcao;
@@ -133,10 +133,10 @@ void consultar_imovel(vector<Imovel> imoveis, int indice)
         cout <<"==================================================================================================="<< endl;
         for (int i = 0; i < indice; i++)
         {
-            if(imoveis[i].getTipoImovel() == 1)
+            if(imoveis[i]->getTipoImovel() == 1)
             {
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-                imoveis[i].caracteristicas();
+                imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
             }
         }
@@ -145,10 +145,10 @@ void consultar_imovel(vector<Imovel> imoveis, int indice)
         cout <<"==================================================================================================="<< endl;
         for (int i = 0; i < indice; i++)
         {
-            if(imoveis[i].getTipoImovel() == 2)
+            if(imoveis[i]->getTipoImovel() == 2)
             {
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-                imoveis[i].caracteristicas();
+                imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
             }
         }
@@ -157,10 +157,10 @@ void consultar_imovel(vector<Imovel> imoveis, int indice)
         cout <<"==================================================================================================="<< endl;
         for (int i = 0; i < indice; i++)
         {
-            if(imoveis[i].getTipoImovel() == 3)
+            if(imoveis[i]->getTipoImovel() == 3)
             {
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-                imoveis[i].caracteristicas();
+                imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
             }
         }
@@ -181,15 +181,15 @@ void consultar_imovel(vector<Imovel> imoveis, int indice)
 
 }
 
-void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
+vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
 {
     int inteiro;
     double pontoflutuante;
     string str;
 
-    Apartamento apartamento = Apartamento();
-    Casa casa = Casa();
-    Terreno terreno = Terreno();
+    Apartamento* apartamento = new Apartamento();
+    Casa* casa = new Casa();
+    Terreno* terreno = new Terreno();
     Endereco endereco;
 
     switch (tipo)
@@ -198,7 +198,7 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         cout << "Qual o valor do imóvel?" << endl;
         cin >> pontoflutuante;
         getchar();
-        apartamento.setValor(pontoflutuante);
+        apartamento->setValor(pontoflutuante);
 
         cout << "Qual o logradouro?" << endl;
         getline(cin, str);
@@ -221,50 +221,53 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         getline(cin, str);
         endereco.setCep(str);
 
-        apartamento.setEndereco(endereco);
+        apartamento->setEndereco(endereco);
 
         cout << "1 - Imóvel para venda\n2- Imóvel para alugar\n(Escolha uma opção)" << endl;
         cin >> inteiro;
         getchar();
         if(inteiro == 1)
         {
-            apartamento.setOferta(true);
+            apartamento->setOferta(true);
         }
         else
         {
-            apartamento.setOferta(false);
+            apartamento->setOferta(false);
         }
 
         cout << "Descrição:" << endl;
         getline(cin, str);
-        apartamento.setDescricao(str);
+        apartamento->setDescricao(str);
 
         cout << "Anúncio:" <<endl;
         getline(cin, str);
-        apartamento.setAnuncio(str);
+        apartamento->setAnuncio(str);
+
+        imoveis.push_back(apartamento);
+
+        apartamento = (Apartamento*)imoveis.at(*indice);
 
         cout << "Qual a posição do imóvel?" << endl;
         getline(cin, str);
-        apartamento.setposicao(str);
+        apartamento->setposicao(str);
 
         cout << "Quantos quartos há no imóvel?" << endl;
         cin >> inteiro;
-        apartamento.setnumQuartos(inteiro);
+        apartamento->setnumQuartos(inteiro);
 
         cout << "Quantas vagas de garagem?" << endl;
         cin >> inteiro;
-        apartamento.setvagasGaragem(inteiro);
+        apartamento->setvagasGaragem(inteiro);
 
         cout << "Qual o valor do condomínio?" << endl;
         cin >> pontoflutuante;
-        apartamento.setvalorCondomino(pontoflutuante);
+        apartamento->setvalorCondomino(pontoflutuante);
 
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
-        apartamento.setarea(pontoflutuante);
+        apartamento->setarea(pontoflutuante);
 
-        imoveis.push_back(apartamento);
-        *indice++;
+        (*indice)++;
         
         break;
 
@@ -272,7 +275,7 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         cout << "Qual o valor do imóvel?" << endl;
         cin >> pontoflutuante;
         getchar();
-        casa.setValor(pontoflutuante);
+        casa->setValor(pontoflutuante);
 
         cout << "Qual o logradouro?" << endl;
         getline(cin, str);
@@ -295,46 +298,49 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         getline(cin, str);
         endereco.setCep(str);
 
-        casa.setEndereco(endereco);
+        casa->setEndereco(endereco);
 
         cout << "1 - Imóvel para venda\n2- Imóvel para alugar\n(Escolha uma opção)" << endl;
         cin >> inteiro;
         getchar();
         if(inteiro == 1)
         {
-            casa.setOferta(true);
+            casa->setOferta(true);
         }
         else
         {
-            casa.setOferta(false);
+            casa->setOferta(false);
         }
 
         cout << "Descrição:" << endl;
         getline(cin, str);
-        casa.setDescricao(str);
+        casa->setDescricao(str);
 
         cout << "Anúncio:" <<endl;
         getline(cin, str);
-        casa.setAnuncio(str);
+        casa->setAnuncio(str);
+
+        imoveis.push_back(casa);
+
+        casa = (Casa*)imoveis.at(*indice);
 
         cout << "Quantos quartos há no imóvel?" << endl;
         cin >> inteiro;
-        casa.setnumQuartos(inteiro);
+        casa->setnumQuartos(inteiro);
 
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
-        casa.setareaConstruida(pontoflutuante);
+        casa->setareaConstruida(pontoflutuante);
 
         cout << "Qual a área do terreno do imóvel?" << endl;
         cin >> pontoflutuante;
-        casa.setareaTerreno(pontoflutuante);
+        casa->setareaTerreno(pontoflutuante);
 
         cout << "Quantos pavimentos há no imóvel?" << endl;
         cin >> inteiro;
-        casa.setnumPavimentos(inteiro);
+        casa->setnumPavimentos(inteiro);
 
-        imoveis.push_back(casa);
-        *indice++;
+        (*indice)++;
 
         break;
 
@@ -342,7 +348,7 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         cout << "Qual o valor do imóvel?" << endl;
         cin >> pontoflutuante;
         getchar();
-        terreno.setValor(pontoflutuante);
+        terreno->setValor(pontoflutuante);
 
         cout << "Qual o logradouro?" << endl;
         getline(cin, str);
@@ -365,39 +371,40 @@ void cadastrar_imovel(vector<Imovel> imoveis, int *indice, int tipo)
         getline(cin, str);
         endereco.setCep(str);
 
-        terreno.setEndereco(endereco);
+        terreno->setEndereco(endereco);
 
         cout << "1 - Imóvel para venda\n2- Imóvel para alugar\n(Escolha uma opção)" << endl;
         cin >> inteiro;
         getchar();
         if(inteiro == 1)
         {
-            terreno.setOferta(true);
+            terreno->setOferta(true);
         }
         else
         {
-            terreno.setOferta(false);
+            terreno->setOferta(false);
         }
 
         cout << "Descrição:" << endl;
         getline(cin, str);
-        terreno.setDescricao(str);
+        terreno->setDescricao(str);
 
         cout << "Anúncio:" <<endl;
         getline(cin, str);
-        terreno.setAnuncio(str);
+        terreno->setAnuncio(str);
+
+        imoveis.push_back(terreno);
+
+        terreno = (Terreno*)imoveis.at(*indice);
 
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
-        terreno.setArea(pontoflutuante);
+        terreno->setArea(pontoflutuante);
 
-        imoveis.push_back(casa);
-        *indice++;
-        break;
-    
-    default:
+        (*indice)++;
         break;
     }
+    return imoveis;
 }
 
 int main()
@@ -408,7 +415,7 @@ int main()
 
     int tipo;
 
-    vector<Imovel> imoveis = {};
+    vector<Imovel*> imoveis;
 
     while (true)
     {
@@ -432,21 +439,21 @@ int main()
                 case 1:
                     limpa_tela();
                     tipo = 1;
-                    cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
                     pressione();
                     goto menuprincipal;
                     break;
                 case 2:
                     limpa_tela();
                     tipo = 2;
-                    cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
                     pressione();
                     goto menuprincipal;
                     break;
                 case 3:
                     limpa_tela();
                     tipo = 3;
-                    cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
                     pressione();
                     goto menuprincipal;
                     break;
@@ -561,7 +568,6 @@ int main()
                 break;
             }
             break;
-    }
-    
+    } 
     return 0;
 }

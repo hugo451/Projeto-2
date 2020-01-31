@@ -2,7 +2,7 @@
 
 Terreno::Terreno()
 {
-    this->tipoImovel = 3;
+    this->setTipoImovel(3);
 }
 double Terreno::getArea()
 {

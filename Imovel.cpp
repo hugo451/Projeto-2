@@ -54,5 +54,5 @@ void Imovel::setEndereco(Endereco endereco)
 }
 void Imovel::caracteristicas()
 {
-    
+
 }
