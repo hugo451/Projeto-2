@@ -5,6 +5,8 @@
 #include "Casa.hpp"
 #include "Terreno.hpp"
 #include <vector>
+#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -32,13 +34,11 @@ void menu_principal()
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
     cout <<"                                    2 - CADASTRAR IMOVEL                                           "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-    cout <<"                                    3 - BUSCAR IMOVEL                                              "<< endl;
+    cout <<"                                    3 - REMOVER IMOVEL                                             "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-    cout <<"                                    4 - REMOVER IMOVEL                                             "<< endl;
+    cout <<"                                    4 - EDITAR IMOVEL                                              "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-    cout <<"                                    5 - EDITAR IMOVEL                                              "<< endl;
-    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-    cout <<"                                    6 - SAIR DO PROGRAMA                                           "<< endl;
+    cout <<"                                    5 - SAIR DO PROGRAMA                                           "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
     cout <<"==================================================================================================="<< endl;
     cout <<"--------------------------------------ESCOLHA UMA OPCAO--------------------------------------------"<< endl;
@@ -124,6 +124,8 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
     int opcao;
     bool contrato;
     double valor;
+    string str, str2;
+    Endereco end;
     submenu_1_2();
     cin >> opcao;
     limpa_tela();
@@ -175,6 +177,66 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
         limpa_tela();
         switch (opcao)
         {
+        case 2:
+            cout << "Qual o bairro que deseja pesquisar?" << endl;
+            cin >> str;
+            transform(str.begin(),str.end(), str.begin(), ::tolower);
+            limpa_tela();
+            if (opcao == 1)
+            {
+                contrato = true;
+            }
+            else
+            {
+                contrato = false;
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                             APARTAMENTOS                                          "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getBairro();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 1 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                                CASAS                                              "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getBairro();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 2 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                               TERRENOS                                            "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getBairro();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 3 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            pressione();
+            break;
         case 1:
             cout << "Qual o tipo de contrato? (1 - Venda) (2 - Aluguel)" << endl;
             cin >> opcao;
@@ -225,11 +287,62 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             }
             pressione();
             break;
-        case 2:
-            /* code */
-            break;
         case 3:
-            /* code */
+            cout << "Qual o anúncio que deseja pesquisar?" << endl;
+            cin >> str;
+            transform(str.begin(),str.end(), str.begin(), ::tolower);
+            limpa_tela();
+            if (opcao == 1)
+            {
+                contrato = true;
+            }
+            else
+            {
+                contrato = false;
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                             APARTAMENTOS                                          "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                str2 = imoveis[i]->getAnuncio();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 1 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                                CASAS                                              "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                str2 = imoveis[i]->getAnuncio();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 2 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                               TERRENOS                                            "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                str2 = imoveis[i]->getAnuncio();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 3 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            pressione();
             break;
         case 4:
             cout << "Qual o tipo de contrato? (1 - Venda) (2 - Aluguel)" << endl;
@@ -576,40 +689,7 @@ int main()
                     break;
                 }
                 break;
-            
             case 3:
-                limpa_tela();
-                submenu();
-                cin >> subopcao;
-                switch (subopcao)
-                {
-                case 1:
-                    limpa_tela();
-                    cout << "Busca de Apartamentos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 2:
-                    limpa_tela();
-                    cout << "Busca de Casas";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 3:
-                    limpa_tela();
-                    cout << "Busca de Terrenos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                
-                default:
-                    limpa_tela();
-                    goto menuprincipal;
-                    break;
-                }
-                break;
-            
-            case 4:
                 limpa_tela();
                 submenu();
                 cin >> subopcao;
@@ -641,7 +721,7 @@ int main()
                 }
                 break;
             
-            case 5:
+            case 4:
                 limpa_tela();
                 submenu();
                 cin >> subopcao;
