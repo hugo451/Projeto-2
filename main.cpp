@@ -10,6 +10,81 @@
 
 using namespace std;
 
+void salvar_arquivo(vector<Imovel*> imoveis)
+{
+    ofstream file;
+    file.open("dados.txt");
+    Endereco end;
+
+    Apartamento* apto = new Apartamento();
+    Casa* cs = new Casa();
+    Terreno*ter = new Terreno();
+
+    if (!file.is_open()) {
+        cout << "Nao foi possivel abrir o arquivo para escrita" << endl;
+        return ;
+    }
+    for (int i = 0; i < imoveis.size(); i++)
+    {
+        if(imoveis[i]->getTipoImovel() == 1)
+        {
+
+            file << 1 << endl;
+            end = imoveis[i]->getEndereco();
+            file << end.getLogradouro() <<endl;
+            file << end.getBairro() << endl;
+            file << end.getCidade() << endl;
+            file << end.getNumero() << endl;
+            file << end.getCep() << endl;
+            file << imoveis[i]->getOferta() << endl;
+            file << imoveis[i]->getDescricao() << endl;
+            file << imoveis[i]->getAnuncio() << endl;
+            apto = (Apartamento*)imoveis[i];
+            file << apto->getposicao() << endl;
+            file << apto->getnumQuartos() << endl;
+            file << apto->getvagasGaragem() << endl;
+            file << apto->getvalorCondomino() << endl;
+            file << apto->getarea() << endl;
+
+        }
+        else if(imoveis[i]->getTipoImovel() == 2)
+        {
+            file << 2 << endl;
+            end = imoveis[i]->getEndereco();
+            file << end.getLogradouro() <<endl;
+            file << end.getBairro() << endl;
+            file << end.getCidade() << endl;
+            file << end.getNumero() << endl;
+            file << end.getCep() << endl;
+            file << imoveis[i]->getOferta() << endl;
+            file << imoveis[i]->getDescricao() << endl;
+            file << imoveis[i]->getAnuncio() << endl;
+            cs = (Casa*)imoveis[i];
+            file << cs->getnumQuartos() << endl;
+            file << cs->getareaConstruida() <<endl;
+            file << cs->getareaTerreno() <<endl;
+            file << cs->getnumPavimentos() << endl;
+        }
+        else
+        {
+            file << 3 << endl;
+            end = imoveis[i]->getEndereco();
+            file << end.getLogradouro() <<endl;
+            file << end.getBairro() << endl;
+            file << end.getCidade() << endl;
+            file << end.getNumero() << endl;
+            file << end.getCep() << endl;
+            file << imoveis[i]->getOferta() << endl;
+            file << imoveis[i]->getDescricao() << endl;
+            file << imoveis[i]->getAnuncio() << endl;
+            ter = (Terreno*)imoveis[i];
+            file << ter->getArea() << endl;
+        }
+        
+    }
+    
+}
+
 void limpa_buffer()
 {
     char c;
@@ -140,6 +215,10 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             if(imoveis[i]->getTipoImovel() == 1)
             {
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                cout <<"                                       Posição:"<< i << endl;
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
             }
@@ -152,6 +231,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             if(imoveis[i]->getTipoImovel() == 2)
             {
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                cout <<"                                       Posição:"<< i << endl;
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
             }
@@ -163,6 +245,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
         {
             if(imoveis[i]->getTipoImovel() == 3)
             {
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                cout <<"                                       Posição:"<< i << endl;
+                cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 imoveis[i]->caracteristicas();
                 cout <<"---------------------------------------------------------------------------------------------------"<< endl;
@@ -201,6 +286,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 1 && str2.find(str) != string::npos)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -216,6 +304,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 2 && str2.find(str) != string::npos)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -230,6 +321,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
                 if(imoveis[i]->getTipoImovel() == 3 && str2.find(str) != string::npos)
                 {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
@@ -257,6 +351,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 1 && imoveis[i]->getOferta() == contrato)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -269,6 +366,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 2 && imoveis[i]->getOferta() == contrato)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -280,6 +380,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             {
                 if(imoveis[i]->getTipoImovel() == 3 && imoveis[i]->getOferta() == contrato)
                 {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
@@ -310,6 +413,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 1 && str2.find(str) != string::npos)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -324,6 +430,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 2 && str2.find(str) != string::npos)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -337,6 +446,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
                 if(imoveis[i]->getTipoImovel() == 3 && str2.find(str) != string::npos)
                 {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
@@ -367,6 +479,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 1 && imoveis[i]->getOferta() == contrato && imoveis[i]->getValor() <= valor)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -379,6 +494,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
                 if(imoveis[i]->getTipoImovel() == 2 && imoveis[i]->getOferta() == contrato && imoveis[i]->getValor() <= valor)
                 {
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                 }
@@ -390,6 +508,9 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             {
                 if(imoveis[i]->getTipoImovel() == 3 && imoveis[i]->getOferta() == contrato && imoveis[i]->getValor() <= valor)
                 {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
                     imoveis[i]->caracteristicas();
                     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
@@ -406,7 +527,7 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
 
 }
 
-vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
+vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int indice, int tipo)
 {
     int inteiro;
     double pontoflutuante;
@@ -468,9 +589,9 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
         getline(cin, str);
         apartamento->setAnuncio(str);
 
-        imoveis.push_back(apartamento);
+        imoveis.insert(imoveis.begin() + indice, apartamento);
 
-        apartamento = (Apartamento*)imoveis.at(*indice);
+        apartamento = (Apartamento*)imoveis.at(indice);
 
         cout << "Qual a posição do imóvel?" << endl;
         getline(cin, str);
@@ -491,8 +612,6 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
         apartamento->setarea(pontoflutuante);
-
-        (*indice)++;
         
         break;
 
@@ -545,9 +664,9 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
         getline(cin, str);
         casa->setAnuncio(str);
 
-        imoveis.push_back(casa);
+        imoveis.insert(imoveis.begin() + indice, casa);
 
-        casa = (Casa*)imoveis.at(*indice);
+        casa = (Casa*)imoveis.at(indice);
 
         cout << "Quantos quartos há no imóvel?" << endl;
         cin >> inteiro;
@@ -564,8 +683,6 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
         cout << "Quantos pavimentos há no imóvel?" << endl;
         cin >> inteiro;
         casa->setnumPavimentos(inteiro);
-
-        (*indice)++;
 
         break;
 
@@ -618,17 +735,41 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int *indice, int tipo)
         getline(cin, str);
         terreno->setAnuncio(str);
 
-        imoveis.push_back(terreno);
+        imoveis.insert(imoveis.begin() + indice, terreno);
 
-        terreno = (Terreno*)imoveis.at(*indice);
+        terreno = (Terreno*)imoveis.at(indice);
 
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
         terreno->setArea(pontoflutuante);
 
-        (*indice)++;
         break;
     }
+    return imoveis;
+}
+
+vector<Imovel*> editar_imovel(vector<Imovel*> imoveis, int indice)
+{
+    int posicao, tipo;
+    consultar_imovel(imoveis, indice);
+    limpa_tela();
+    cout <<"Qual tipo de imóvel você deseja editar? (1-Apartamento) (2-Casa) (3-Terreno)?" <<endl;
+    cin >> tipo;
+    cout <<"Escolha uma posição para editar:"<< endl;
+    cin >> posicao;
+    return cadastrar_imovel(imoveis, posicao, tipo);
+}
+
+vector<Imovel*> remover_imovel(vector<Imovel*> imoveis, int indice)
+{
+    int posicao;
+    consultar_imovel(imoveis, indice);
+    limpa_tela();
+    cout <<"Escolha uma posição para remover:"<< endl;
+    cin >> posicao;
+
+    imoveis.erase(imoveis.begin() + posicao);
+
     return imoveis;
 }
 
@@ -664,21 +805,24 @@ int main()
                 case 1:
                     limpa_tela();
                     tipo = 1;
-                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, indice, tipo);
+                    indice++;
                     pressione();
                     goto menuprincipal;
                     break;
                 case 2:
                     limpa_tela();
                     tipo = 2;
-                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, indice, tipo);
+                    indice++;
                     pressione();
                     goto menuprincipal;
                     break;
                 case 3:
                     limpa_tela();
                     tipo = 3;
-                    imoveis = cadastrar_imovel(imoveis, &indice, tipo);
+                    imoveis = cadastrar_imovel(imoveis, indice, tipo);
+                    indice++;
                     pressione();
                     goto menuprincipal;
                     break;
@@ -691,66 +835,19 @@ int main()
                 break;
             case 3:
                 limpa_tela();
-                submenu();
-                cin >> subopcao;
-                switch (subopcao)
-                {
-                case 1:
-                    limpa_tela();
-                    cout << "Remover de Apartamentos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 2:
-                    limpa_tela();
-                    cout << "Remover de Casas";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 3:
-                    limpa_tela();
-                    cout << "Remover de Terrenos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                
-                default:
-                    limpa_tela();
-                    goto menuprincipal;
-                    break;
-                }
+                imoveis = remover_imovel(imoveis, indice);
+                indice--;
+                cout << "Imóvel removido com sucesso"<< endl;
+                pressione();
+                goto menuprincipal;
                 break;
             
             case 4:
                 limpa_tela();
-                submenu();
-                cin >> subopcao;
-                switch (subopcao)
-                {
-                case 1:
-                    limpa_tela();
-                    cout << "Editar de Apartamentos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 2:
-                    limpa_tela();
-                    cout << "Editar de Casas";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                case 3:
-                    limpa_tela();
-                    cout << "Editar de Terrenos";
-                    pressione();
-                    goto menuprincipal;
-                    break;
-                
-                default:
-                    limpa_tela();
-                    goto menuprincipal;
-                    break;
-                }
+                imoveis = editar_imovel(imoveis, indice);
+                cout << "Imóvel editado com sucesso!" <<endl;
+                pressione();
+                goto menuprincipal;
                 break;
             
             default:
@@ -760,6 +857,7 @@ int main()
                 break;
             }
             break;
-    } 
+    }
+    salvar_arquivo(imoveis); 
     return 0;
 }
