@@ -1,0 +1,84 @@
+1
+1e+06
+rua guarabira
+manaira
+joao pessoa
+101
+xxxxxxx
+1
+apartamento em manaira para vender
+apartamento p venda em manaira
+sudeste
+4
+2
+700
+130
+1
+540000
+rua tonel
+bessopolis
+joao pao
+32
+apoapa
+1
+pao pao pao
+joao jao joao
+sul
+4
+2
+1000
+200
+2
+1.2e+06
+rua gov luiz henrique
+bessa
+joao pessoa
+10
+zzzzz
+1
+lalalala
+lololo
+6
+200
+300
+10
+1
+2000
+rua xambari da vea
+rocinha
+rio de janeiro
+200
+yyyyyyy
+0
+tiro porrada e bomba
+so bala perdida
+sul
+3
+2
+10
+45
+2
+3000
+rua da patrulha
+xixiricu
+new york
+2002
+wwwwwww
+0
+casa em nova york para alugar
+casa de temporada em nova york
+7
+250
+350
+12
+3
+140000
+rua dos patos
+pateiro
+patos
+111
+ppppppp
+1
+terreno em patos
+terreno com muitos patos em patos
+3

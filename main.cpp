@@ -30,6 +30,7 @@ void salvar_arquivo(vector<Imovel*> imoveis)
         {
 
             file << 1 << endl;
+            file << imoveis[i]->getValor() << endl;
             end = imoveis[i]->getEndereco();
             file << end.getLogradouro() <<endl;
             file << end.getBairro() << endl;
@@ -50,6 +51,7 @@ void salvar_arquivo(vector<Imovel*> imoveis)
         else if(imoveis[i]->getTipoImovel() == 2)
         {
             file << 2 << endl;
+            file << imoveis[i]->getValor() << endl;
             end = imoveis[i]->getEndereco();
             file << end.getLogradouro() <<endl;
             file << end.getBairro() << endl;
@@ -68,6 +70,7 @@ void salvar_arquivo(vector<Imovel*> imoveis)
         else
         {
             file << 3 << endl;
+            file << imoveis[i]->getValor() << endl;
             end = imoveis[i]->getEndereco();
             file << end.getLogradouro() <<endl;
             file << end.getBairro() << endl;
@@ -83,6 +86,149 @@ void salvar_arquivo(vector<Imovel*> imoveis)
         
     }
     
+}
+
+vector<Imovel*> ler_arquivo(int* indice) {
+    vector<Imovel*> imoveis;
+    ifstream file;
+    string str;
+    Endereco end;
+    int inteiro, i=0;
+    double pontoflutuante;
+    bool of;
+
+    
+ 
+    file.open("dados.txt");
+
+    if (!file.is_open())
+    {
+        cout << "Nao foi possivel abrir o arquivo para leitura" << endl;
+        return imoveis;
+    }
+    while (true)
+    {
+        Apartamento* ap = new Apartamento();
+        Casa* cs = new Casa();
+        Terreno* ter = new Terreno();
+
+        file >> inteiro;
+        if (file.eof() || file.bad() || file.fail())
+            break;
+        switch (inteiro)
+        {
+        case 1:
+            file >> pontoflutuante;
+            file.ignore();
+            ap->setValor(pontoflutuante);
+            getline(file, str);
+            end.setLogradouro(str);
+            getline(file, str);
+            end.setBairro(str);
+            getline(file, str);
+            end.setCidade(str);
+            file >> inteiro;
+            file.ignore();
+            end.setNumero(inteiro);
+            getline(file, str);
+            end.setCep(str);
+            ap->setEndereco(end);
+            file >> of;
+            file.ignore();
+            ap->setOferta(of);
+            getline(file, str);
+            ap->setDescricao(str);
+            getline(file, str);
+            ap->setAnuncio(str);
+            getline(file, str);
+            imoveis.insert(imoveis.begin() + i, ap);
+            ap = (Apartamento*)imoveis[i];
+            ap->setposicao(str);
+            file >> inteiro;
+            ap->setnumQuartos(inteiro);
+            file >> inteiro;
+            ap->setvagasGaragem(inteiro);
+            file >> pontoflutuante;
+            ap->setvalorCondomino(pontoflutuante);
+            file >> pontoflutuante;
+            ap->setarea(pontoflutuante);
+            i++;
+            break;
+
+        case 2:
+            file >> pontoflutuante;
+            file.ignore();
+            cs->setValor(pontoflutuante);
+            getline(file, str);
+            end.setLogradouro(str);
+            getline(file, str);
+            end.setBairro(str);
+            getline(file, str);
+            end.setCidade(str);
+            file >> inteiro;
+            file.ignore();
+            end.setNumero(inteiro);
+            getline(file, str);
+            end.setCep(str);
+            cs->setEndereco(end);
+            file >> of;
+            file.ignore();
+            cs->setOferta(of);
+            getline(file, str);
+            cs->setDescricao(str);
+            getline(file, str);
+            cs->setAnuncio(str);
+            file >> inteiro;
+            imoveis.insert(imoveis.begin() + i, cs);
+            cs = (Casa*)imoveis[i];
+            cs->setnumQuartos(inteiro);
+            file >> pontoflutuante;
+            cs->setareaConstruida(pontoflutuante);
+            file >> pontoflutuante; 
+            cs->setareaTerreno(pontoflutuante);
+            file >> inteiro;
+            cs->setnumPavimentos(inteiro);
+            i++;
+            break;
+
+        case 3:
+            file >> pontoflutuante;
+            file.ignore();
+            ter->setValor(pontoflutuante);
+            getline(file, str);
+            end.setLogradouro(str);
+            getline(file, str);
+            end.setBairro(str);
+            getline(file, str);
+            end.setCidade(str);
+            file >> inteiro;
+            file.ignore();
+            end.setNumero(inteiro);
+            getline(file, str);
+            end.setCep(str);
+            ter->setEndereco(end);
+            file >> of;
+            file.ignore();
+            ter->setOferta(of);
+            getline(file, str);
+            ter->setDescricao(str);
+            getline(file, str);
+            ter->setAnuncio(str);
+            file >> inteiro;
+            imoveis.insert(imoveis.begin() + i, ter);
+            ter = (Terreno*)imoveis[i];
+            file >> pontoflutuante;
+            ter->setArea(pontoflutuante);
+            i++;
+            break;
+        
+        default:
+            break;
+        }
+    }
+    file.close();
+    *indice = i;
+    return imoveis;
 }
 
 void limpa_buffer()
@@ -782,6 +928,8 @@ int main()
     int tipo;
 
     vector<Imovel*> imoveis;
+
+    imoveis = ler_arquivo(&indice);
 
     while (true)
     {
