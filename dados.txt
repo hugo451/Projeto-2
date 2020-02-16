@@ -1,84 +1,41 @@
 1
-1e+06
-rua guarabira
-manaira
-joao pessoa
-101
-xxxxxxx
-1
-apartamento em manaira para vender
-apartamento p venda em manaira
-sudeste
-4
-2
-700
-130
-1
-540000
-rua tonel
-bessopolis
-joao pao
-32
-apoapa
-1
-pao pao pao
-joao jao joao
-sul
-4
-2
-1000
-200
-2
-1.2e+06
-rua gov luiz henrique
+500000
+rua luzia simoes bertoline
 bessa
 joao pessoa
-10
-zzzzz
+101
+58036-630
 1
-lalalala
-lololo
-6
-200
-300
-10
-1
-2000
-rua xambari da vea
-rocinha
-rio de janeiro
-200
-yyyyyyy
+apartamento no bessa para vender
+apartamento 4 quartos no bessa
+leste
+4
+2
+600
+101
+9
+2
+2500
+rua dep odon bezerra
+funcionarios 1
+joao pessoa
+89
+xxxxxxxx
 0
-tiro porrada e bomba
-so bala perdida
-sul
+casa para alugar 3 quartos
+casa espacosa para alugar
 3
-2
-10
-45
-2
-3000
-rua da patrulha
-xixiricu
-new york
-2002
-wwwwwww
-0
-casa em nova york para alugar
-casa de temporada em nova york
+100
+150
 7
-250
-350
-12
 3
-140000
-rua dos patos
-pateiro
-patos
-111
-ppppppp
+1e+06
+rua dos terrenos
+aterro do flamengo
+rio de janeiro
 1
-terreno em patos
-terreno com muitos patos em patos
-3
+fffffff
+1
+oto patamar constroi aqui
+aqui no flamengo eh otopatamar
+1e+06

@@ -11,6 +11,7 @@ private:
     double valorCondomino;
     int vagasGaragem;
     double area;
+    int andar;
 
 public:
     Apartamento();
@@ -19,11 +20,13 @@ public:
     double getvalorCondomino();
     int getvagasGaragem();
     double getarea();
+    int getAndar();
     void setposicao(string posicao);
     void setnumQuartos(int numQuartos);
     void setvalorCondomino(double valorCondomino);
     void setvagasGaragem(int vagasGaragem);
     void setarea(double area);
+    void setAndar(int andar);
     void caracteristicas();
 
 };

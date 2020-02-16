@@ -24,6 +24,10 @@ double Apartamento::getarea()
 {
     return area;
 }
+int Apartamento::getAndar()
+{
+    return andar;
+}
 void Apartamento::setposicao(string posicao)
 {
     this->posicao = posicao;
@@ -44,6 +48,10 @@ void Apartamento::setarea(double area)
 {
     this->area = area;
 }
+void Apartamento::setAndar(int andar)
+{
+    this->andar = andar;
+}
 void Apartamento::caracteristicas()
 {
     cout << "Valor(R$): " << valor << endl;
@@ -59,4 +67,5 @@ void Apartamento::caracteristicas()
     cout << "Vagas de garagem: " << vagasGaragem << endl;
     cout << "Valor do condomínio: " << valorCondomino << endl;
     cout << "Area do imóvel: " << area << endl;
+    cout << "Andar do imóvel: " << andar << endl;
 }

@@ -46,6 +46,7 @@ void salvar_arquivo(vector<Imovel*> imoveis)
             file << apto->getvagasGaragem() << endl;
             file << apto->getvalorCondomino() << endl;
             file << apto->getarea() << endl;
+            file << apto->getAndar() << endl;
 
         }
         else if(imoveis[i]->getTipoImovel() == 2)
@@ -152,6 +153,8 @@ vector<Imovel*> ler_arquivo(int* indice) {
             ap->setvalorCondomino(pontoflutuante);
             file >> pontoflutuante;
             ap->setarea(pontoflutuante);
+            file >> inteiro;
+            ap->setAndar(inteiro);
             i++;
             break;
 
@@ -307,7 +310,9 @@ void submenu_1()
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
     cout <<"                                    4 - POR VALOR                                                  "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
-    cout <<"                                    5 - VOLTAR AO MENU PRINCIPAL                                   "<< endl;
+    cout <<"                                    5 - POR CIDADE                                                 "<< endl;
+    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+    cout <<"                                    6 - VOLTAR AO MENU PRINCIPAL                                   "<< endl;
     cout <<"---------------------------------------------------------------------------------------------------"<< endl;
     cout <<"==================================================================================================="<< endl;
     cout <<"--------------------------------------ESCOLHA UMA OPCAO--------------------------------------------"<< endl;
@@ -541,14 +546,6 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             cin >> str;
             transform(str.begin(),str.end(), str.begin(), ::tolower);
             limpa_tela();
-            if (opcao == 1)
-            {
-                contrato = true;
-            }
-            else
-            {
-                contrato = false;
-            }
             cout <<"==================================================================================================="<< endl;
             cout <<"                                             APARTAMENTOS                                          "<< endl;
             cout <<"==================================================================================================="<< endl;
@@ -664,6 +661,68 @@ void consultar_imovel(vector<Imovel*> imoveis, int indice)
             }
             pressione();
             break;
+        case 5:
+            cout << "Em qual cidade deseja pesquisar?" << endl;
+            cin >> str;
+            transform(str.begin(),str.end(), str.begin(), ::tolower);
+            limpa_tela();
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                             APARTAMENTOS                                          "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getCidade();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 1 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                                CASAS                                              "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getCidade();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 2 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            cout <<"==================================================================================================="<< endl;
+            cout <<"                                               TERRENOS                                            "<< endl;
+            cout <<"==================================================================================================="<< endl;
+            for (int i = 0; i < indice; i++)
+            {
+                end = imoveis[i]->getEndereco();
+                str2 = end.getCidade();
+                transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
+                if(imoveis[i]->getTipoImovel() == 3 && str2.find(str) != string::npos)
+                {
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"                                       Posição:"<< i << endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                    imoveis[i]->caracteristicas();
+                    cout <<"---------------------------------------------------------------------------------------------------"<< endl;
+                }
+            }
+            pressione();
+
+            break;
         
         default:
             break;
@@ -758,6 +817,10 @@ vector<Imovel*> cadastrar_imovel(vector<Imovel*> imoveis, int indice, int tipo)
         cout << "Qual a área do imóvel?" << endl;
         cin >> pontoflutuante;
         apartamento->setarea(pontoflutuante);
+
+        cout << "Qual o andar do imóvel?" << endl;
+        cin >> inteiro;
+        apartamento->setAndar(inteiro);
         
         break;
 
